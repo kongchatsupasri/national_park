@@ -4,5 +4,5 @@ plotly
 shapely 
 geopandas
 Pillow
-pickle
+pickle5
 numpy
