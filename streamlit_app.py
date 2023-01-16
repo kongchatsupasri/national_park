@@ -121,7 +121,7 @@ def plot_scattermapbox(coordinate_dict = read_coordinate_json(), province_df = r
               lat = park_df.lat,
               mode = 'markers',
               marker_color = park_df['star_normalize'],
-              marker_colorscale = px.colors.sequential.Plasma,
+              marker_colorscale = px.colors.sequential.Peach,
               textposition = 'top right',
               textfont = dict(size=16, color='black'),
               text = park_df['national_park_en'],
