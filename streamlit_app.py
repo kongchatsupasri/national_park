@@ -266,7 +266,7 @@ you can skim through the interactive chart of popular provinces in Thailand. And
     choice = [how_to_pages[0]]
   
   with how_col2:
-    st.markdown("<h3 style='text-align: center; '>" + '🐣 How To '+ choice[0].split('how')[1] + "/3 </h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; '>" + '🐣 How To '+ choice[0].split('how')[1] + "/3 🐣</h3>", unsafe_allow_html=True)
   
   st.image(Image.open(how_to_images_dict[choice[0]]), width = 800, use_column_width='always')
   st.write(f'{how_text[choice[0]]}')
