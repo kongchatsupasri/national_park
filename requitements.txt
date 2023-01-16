@@ -1,0 +1,10 @@
+pandas
+streamlit
+plotly
+shapely 
+geopandas
+json
+PIL
+pickle
+numpy
+os
