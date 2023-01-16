@@ -205,10 +205,10 @@ if sidebar_radio == 'About':
   how_to_images_dict = how_to_img()
   how_to_pages = ['how1', 'how2', 'how3']
   how_text = {'how1': '''Currently, the app has three sections.  \n
-1. About: a brief introduction to the app.
-2. Thailand Info: visualization of the stat from Thailand’s Ministry of Tourism. And brief introductions of the three highlights in Thailand.
-3. National Park: If you like nature (beaches, islands, mountains, caves, waterfalls), this is your section. It has information on all 153 national parks in Thailand. 
-Thai food and temples are also highlights of Thai tourism. These two sections are coming soon 😀.
+1. **_About:_** a brief introduction to the app.
+2. **_Thailand Info:_** visualization of the stat from Thailand’s Ministry of Tourism. And brief introductions of the three highlights in Thailand.
+3. **_National Park:_** If you like nature (beaches, islands, mountains, caves, waterfalls), this is your section. It has information on all 153 national parks in Thailand. 
+Thai **_Food_** and **_Temples_** are also highlights of Thai tourism. These two sections are coming soon 😀.
 ''',
               'how2': '''If you are interested in coming to Thailand have don’t have a targeted destination just yet, 
 you can skim through the interactive chart of popular provinces in Thailand. And you can find some basic info on Thailand's activities here.
@@ -338,17 +338,17 @@ On top of the treemap, you can select the tourist group (Total, Thai, Foreigner)
   
   how_to_images_dict = how_to_img()
   with short_intro1:
-      st.image(Image.open(how_to_images_dict['how1']), use_column_width='always')
+      st.image(Image.open('./tab-01.png'), use_column_width='always')
       st.markdown("<h4 style='text-align: center;'>Natonal Parks</h4>", unsafe_allow_html=True)
       st.write('There are 155 national parks in Thailand. The parks’ areas vary from mountains, cliffs, waterfalls, and caves, to beaches. Choose “National Park” on the sidebar to see more.')
 
   with short_intro2:
-      st.image(Image.open(how_to_images_dict['how1']), use_column_width='always')
+      st.image(Image.open('./tab-02.png'), use_column_width='always')
       st.markdown("<h4 style='text-align: center;'>Temples</h4>", unsafe_allow_html=True)
       st.write('One of the targeted places for international tourists is temples. There are 43,180 temples in Thailand. The temple section is coming soon. 😬')
 
   with short_intro3:
-      st.image(Image.open(how_to_images_dict['how3']), use_column_width='always')
+      st.image(Image.open('./tab-03.png'), use_column_width='always')
       st.markdown("<h4 style='text-align: center;'>Food</h4>", unsafe_allow_html=True)
       st.write('Spicy Papaya Salad, Pad Thai, and Spicy Shrimp Soup are well-known Thai food. There are more. 441 Michelin Stars places in Thailand for you to try. The food section is coming soon. 😬')
 
