@@ -121,7 +121,7 @@ def plot_scattermapbox(coordinate_dict = read_coordinate_json(), province_df = r
               lat = park_df.lat,
               mode = 'markers',
               marker_color = park_df['star_normalize'],
-              marker_colorscale = px.colors.sequential.Peach,
+              marker_colorscale = px.colors.sequential.Plasma,
               textposition = 'top right',
               textfont = dict(size=16, color='black'),
               text = park_df['national_park_en'],
@@ -152,24 +152,10 @@ def country_treemap(df = read_park_treemap(), region_dict = create_region_dict()
                       )],
                     layout = go.Layout(
                                       width=500,
-                                      height=400,
-                                      annotations=[
-                                          go.layout.Annotation(
-                                              showarrow=False,
-                                              text='Source: www.google.com',
-                                              xanchor='right',
-                                              x=1,
-                                              yanchor='top',
-                                              y=0.05
-                                          )]))
+                                      height=400
+                                      ))
   fig.update_layout(margin = dict(t=0, l=0, r=0, b=0))
   return fig
-
-#%% 
-text = """On the other hand, we denounce with righteous indignation and 
-        dislike men who are so beguiled and demoralized by the charms of pleasure of 
-        the moment, so blinded by desire, that they cannot foresee the pain and trouble 
-        that are bound to ensue."""
 # %%
 st.set_page_config(
   page_title="Thailand National Park",
@@ -267,7 +253,7 @@ you can skim through the interactive chart of popular provinces in Thailand. And
   
   with how_col2:
     st.markdown("<h3 style='text-align: center; '>" + '🐣 How To '+ choice[0].split('how')[1] + "/3 🐣</h3>", unsafe_allow_html=True)
-    
+  
   st.image(Image.open(how_to_images_dict[choice[0]]), width = 800, use_column_width='always')
   st.write(f'{how_text[choice[0]]}')
 
@@ -292,14 +278,16 @@ elif sidebar_radio == 'Thailand Info':
   df = pd.DataFrame({'region': ['Northern', 'Northeastern', 'Central', 'Western', 'Eastern', 'Southern'],
                         'highlight': ['mountains, humble culture', 'uniqueness of food style', 'temples', 'beach (gulf of Thailand)', 'islands, forests, waterfall', 'beach (Andaman sea)']})
 
-  hide_table_row_index = """
-            <style>
-            thead tr th:first-child {display:none}
-            tbody th {display:none}
-            </style>
-            """
-  st.markdown(hide_table_row_index, unsafe_allow_html=True)
-  st.table(df)
+  table_col1, table_col2, table_col3 = st.columns([1, 2, 1])
+  with table_col2:
+    hide_table_row_index = """
+              <style>
+              thead tr th:first-child {display:none}
+              tbody th {display:none}
+              </style>
+              """
+    st.markdown(hide_table_row_index, unsafe_allow_html=True)
+    st.markdown(df.style.set_properties(color="white", align="center").to_html(table_uuid="table_1"), unsafe_allow_html=True)
 
   st.subheader('🌳Tourist number treemap')
   travel_stat_df = read_travel_stat_df()
@@ -314,17 +302,18 @@ elif sidebar_radio == 'Thailand Info':
                                       layout = go.Layout(
                                                           width=500,
                                                           height=400,
-                                                          annotations=[
-                                                              go.layout.Annotation(
-                                                                  showarrow=False,
-                                                                  text='data source: mots.go.th',
-                                                                  xanchor='right',
-                                                                  x=1,
-                                                                  yanchor='top',
-                                                                  y=0.05
-                                                              )]))
+                                                          ))
   thai_traveler_treemap_fig.update_layout(margin=dict(t=0, l=0, r=0, b=0))
   st.plotly_chart(thai_traveler_treemap_fig, use_container_width=True)
+  st.markdown(
+    f"""<div class="data_source1" style="text-align: right;">
+          <p>data source: 
+            <a class="mention" href="https://www.mots.go.th/more_news_new.php?cid=411">mots.go.th</a>
+          </p>
+        </div>
+    """,
+    unsafe_allow_html=True,
+)
   st.write('''The treemap shows the number of tourists in Thailand. The bigger the box, the more tourists. The boxes have three layers. 
 1. The outer box shows the total number of tourists in Thailand.
 2. Six second-tier boxes show the total number of each region’s tourists.
@@ -360,7 +349,6 @@ On top of the treemap, you can select the tourist group (Total, Thai, Foreigner)
 
 elif sidebar_radio == 'National Park':
   
-#Thailan national park
   coordinate_dict = read_coordinate_json()
   province_df = read_province_df()
   park_df = read_park_df()
@@ -371,8 +359,17 @@ elif sidebar_radio == 'National Park':
   st.write('''The most popular places for international tourists are Phuket,and ChiangMai. But do you know that there are 150s more for you to explore? This section shows you all of the National Parks in Thailand.''')
   mapbox_fig = plot_scattermapbox(coordinate_dict=coordinate_dict, province_df=province_df, park_df=park_df, area = 'Thailand')
   st.plotly_chart(mapbox_fig, use_container_width=True)
+  st.markdown(
+      f"""<div class="data_source1" style="text-align: right;">
+            <p>data source: 
+              <a class="mention" href="https://www.google.com/maps/">Google Maps</a>
+            </p>
+          </div>
+      """,
+      unsafe_allow_html=True,
+  )
   st.write('''This map shows the location and popularity of 155 National Parks in Thailand. Hover through the map to see the National Park name. The size of the map shows the popularity of the spot (size shows the number of comments in Google Maps). The color shows the rating star. The lighter the color means the higher the rating star. Although the color varies from blue to yellow, the rating stars mostly range from 3 to 5.''')
-
+  
   #country treemap
   st.subheader('🌳 Thailand National Park Treemap')
   traveler_group_radio1 = st.radio('select travelers group', 
@@ -381,6 +378,15 @@ elif sidebar_radio == 'National Park':
                                 key = 'travel_group_radio1')
   country_treemap_fig = country_treemap(df = read_park_treemap(), region_dict = create_region_dict(), region = 'Thailand', traveler_group_radio = traveler_group_radio1)
   st.plotly_chart(country_treemap_fig, use_container_width=True)
+  st.markdown(
+      f"""<div class="data_source" style="text-align: right;">
+            <p>data source: 
+              <a class="mention" href="https://portal.dnp.go.th/Content/nationalpark?contentId=20014">dnp.go.th</a>
+            </p>
+          </div>
+      """,
+      unsafe_allow_html=True,
+  )
   st.write('''This treemap shows the number of tourists to national parks in each region. The bigger size of the box means a larger amount of tourists. The regions with the most tourists to their National Parks are Southern, Northern, and Northeaster. Note that number of parks in the region affects the size. The central area’s size is the smallest one because there are only xxx national parks in this region.
   
   Select the tourist group (Total, Thai, Foreigner) to see their popular targeted region with national parks.
@@ -399,6 +405,15 @@ elif sidebar_radio == 'National Park':
   
   region_treemap_fig = country_treemap(df = read_park_treemap(), region_dict = create_region_dict(), region = region_option, traveler_group_radio = traveler_group_radio2)
   st.plotly_chart(region_treemap_fig, use_container_width=True)
+  st.markdown(
+      f"""<div class="data_source" style="text-align: right;">
+            <p>data source: 
+              <a class="mention" href="https://portal.dnp.go.th/Content/nationalpark?contentId=20014">dnp.go.th</a>
+            </p>
+          </div>
+      """,
+      unsafe_allow_html=True,
+  )
   st.write('''The treemap shows the number of tourists in provinces and national parks in the selected region. Hover through the map to see popular provinces and parks in the selected region.
 
 On top of the treemap, you can select the tourist group (Total, Thai, Foreigner) to see their popular targeted provinces.
