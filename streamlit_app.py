@@ -387,7 +387,7 @@ elif sidebar_radio == 'National Park':
       """,
       unsafe_allow_html=True,
   )
-  st.write('''This treemap shows the number of tourists to national parks in each region. The bigger size of the box means a larger amount of tourists. The regions with the most tourists to their National Parks are Southern, Northern, and Northeaster. Note that number of parks in the region affects the size. The central area’s size is the smallest one because there are only xxx national parks in this region.
+  st.write('''This treemap shows the number of tourists to national parks in each region. The bigger size of the box means a larger amount of tourists. The regions with the most tourists to their National Parks are Southern, Northern, and Northeaster. Note that number of parks in the region affects the size. The central area’s size is the smallest one because there are only 3 national parks in this region.
   
   Select the tourist group (Total, Thai, Foreigner) to see their popular targeted region with national parks.
 ''')
