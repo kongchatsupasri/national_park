@@ -98,23 +98,14 @@ def plot_scattermapbox(coordinate_dict = read_coordinate_json(), province_df = r
                                     paper_bgcolor = 'rgba(0,0,0,0)', 
                                     plot_bgcolor = 'rgba(0,0,0,0)',
                                     width=500,
-                                    height=500,
-                                    annotations=[
-                                        go.layout.Annotation(
-                                            showarrow=False,
-                                            text='Source: www.google.com',
-                                            xanchor='right',
-                                            x=1,
-                                            yanchor='top',
-                                            y=0.05
-                                        )]))
+                                    height=500))
 
 
   fig.update_layout(mapbox_style="carto-positron", 
                       mapbox_zoom= 3.75 if area == 'Thailand' else 6.5, 
                       mapbox_center = {'lat': 13.0110763, 'lon': 100.9952628} if area == 'Thailand' else {'lat': province_df['lat'][0], 'lon': province_df['lon'][0]},
                       margin={"r":0,"t":0,"l":0,"b":0})
-  fig.update_traces(showscale=False, )
+  fig.update_traces(showscale=False)
       
   fig.add_trace(
           go.Scattermapbox(
@@ -122,7 +113,7 @@ def plot_scattermapbox(coordinate_dict = read_coordinate_json(), province_df = r
               lat = park_df.lat,
               mode = 'markers',
               marker_color = park_df['star_normalize'],
-              marker_colorscale = px.colors.sequential.Plasma,
+              marker_colorscale = px.colors.sequential.YlOrRd,
               textposition = 'top right',
               textfont = dict(size=16, color='black'),
               text = park_df['national_park_en'],
@@ -209,99 +200,31 @@ if sidebar_radio == 'About':
   7. Hover through the selected national park viewpoints to see the pictures and descriptions. 
   '''}
   
-  st.subheader('🐣 2 sections, 2 more to come')
+  st.subheader('✌🏼 2 sections, 2 more to come')
   how_to_images_dict = how_to_img()
   
+  st.markdown("<h4 style='text-align: center;'>📊 Thailand Info</h4>", unsafe_allow_html=True)
   st.image(Image.open(how_to_images_dict['how1']), use_column_width='always')
-  st.markdown("<h4 style='text-align: center;'>Thailand Info</h4>", unsafe_allow_html=True)
   st.write("If you are interested in coming to Thailand have don’t have a targeted destination just yet, you can skim through the interactive chart of popular provinces in Thailand.")
   
+  st.markdown("<h4 style='text-align: center;'>🌲 Natonal Parks</h4>", unsafe_allow_html=True)
   st.image(Image.open(how_to_images_dict['how2']), use_column_width='always')
-  st.markdown("<h4 style='text-align: center;'>Natonal Parks</h4>", unsafe_allow_html=True)
   st.write('There are 155 national parks in Thailand. The parks’ areas vary from mountains, cliffs, waterfalls, and caves, to beaches. Choose “National Park” on the sidebar to see more.')
 
+  st.markdown("<h4 style='text-align: center;'>🛕 Temples (coming soon)</h4>", unsafe_allow_html=True)
   st.image(Image.open(how_to_images_dict['how3']), use_column_width='always')
-  st.markdown("<h4 style='text-align: center;'>Temples</h4>", unsafe_allow_html=True)
   st.write('One of the targeted places for international tourists is temples. There are 43,180 temples in Thailand. The temple section is coming soon. 😬')
 
+  st.markdown("<h4 style='text-align: center;'>🍲 Food (coming soon)</h4>", unsafe_allow_html=True)
   st.image(Image.open(how_to_images_dict['how4']), use_column_width='always')
-  st.markdown("<h4 style='text-align: center;'>Food</h4>", unsafe_allow_html=True)
   st.write('Spicy Papaya Salad, Pad Thai, and Spicy Shrimp Soup are well-known Thai food. There are more. 441 Michelin Stars places in Thailand for you to try. The food section is coming soon. 😬')
 
-  st.write("""Thailand is one of the top  10 countries with the most tourism. 
-            The top targeted Thailand provinces of international tourists are Bangkok, 
-            Phuket, Surat Thani, and Songkhla. This web app is to help you explore 
-            and list out your targeted destinations without scrolling down through tons of text. 😎""")
-
-  
-  
-
-  if os.path.isfile('how_to_next.p'):
-    how_next_clicked = pkle.load(open('how_to_next.p', 'rb'))  #read file
-    if how_next_clicked == len(how_to_pages):
-      how_next_clicked = 0
-  else:
-    how_next_clicked = 0
-
-  if os.path.isfile('how_to_prev.p'):
-    how_prev_clicked = pkle.load(open('how_to_prev.p', 'rb'))
-    if how_prev_clicked < 0:
-      how_prev_clicked = len(how_to_pages) - 1
-  else:
-    how_prev_clicked = len(how_to_pages) - 1
-
-  how_col1, how_col2, how_col3 = st.columns([1, 1, 1])
-  with how_col1:
-    prev_how_pic_click = st.button('Previous')
-
-  with how_col3:
-    next_how_pic_click = st.button('Next')
-
-  if next_how_pic_click:
-    how_next_clicked = how_next_clicked + 1
-    how_prev_clicked = how_prev_clicked + 1
-    if how_next_clicked == len(how_to_pages):
-      how_next_clicked = 0
-
-    choice = [p for p in how_to_pages if how_to_pages.index(p) == how_next_clicked]
-    pkle.dump(how_to_pages.index(choice[0]), open('how_to_next.p', 'wb'))
-
-  elif prev_how_pic_click:
-    how_next_clicked = how_next_clicked - 1
-    how_prev_clicked = how_prev_clicked - 1
-    if how_prev_clicked < 0:
-      how_prev_clicked = len(how_to_pages) - 1
-
-    choice = [p for p in how_to_pages if how_to_pages.index(p) == how_prev_clicked]
-    pkle.dump(how_to_pages.index(choice[0]), open('how_to_prev.p', 'wb'))
-
-  else:
-    choice = [how_to_pages[0]]
-  
-  with how_col2:
-    st.markdown("<h3 style='text-align: center; '>" + '🐣 How To '+ choice[0].split('how')[1] + "/3 🐣</h3>", unsafe_allow_html=True)
-  
-  st.image(Image.open(how_to_images_dict[choice[0]]), width = 800, use_column_width='always')
-  st.write(f'{how_text[choice[0]]}')
-
-  customized_button = st.markdown("""
-      <style >
-      .stDownloadButton, div.stButton {text-align:center}
-      .stDownloadButton button, div.stButton > button:first-child {
-          line-height: 1.5;
-          display: inline-block;
-          vertical-align: middle;
-          horizontal-align: middle;
-      }
-      
-          }
-      </style>""", unsafe_allow_html=True)
 
   
   
 #%%
 elif sidebar_radio == 'Thailand Info':
-  st.write('Thailand has five regions; Northern, Northeastern, Central, Eastern, Western, and Southern. The different region has different uniqueness.')
+  st.subheader("Region's Highlight")
   df = pd.DataFrame({'region': ['Northern', 'Northeastern', 'Central', 'Western', 'Eastern', 'Southern'],
                         'highlight': ['mountains, humble culture', 'uniqueness of food style', 'temples', 'beach (gulf of Thailand)', 'islands, forests, waterfall', 'beach (Andaman sea)']})
 
@@ -315,6 +238,8 @@ elif sidebar_radio == 'Thailand Info':
               """
     st.markdown(hide_table_row_index, unsafe_allow_html=True)
     st.markdown(df.style.set_properties(color="white", align="center").to_html(table_uuid="table_1"), unsafe_allow_html=True)
+  st.write('\n')
+  st.write('Thailand has six regions; Northern, Northeastern, Central, Eastern, Western, and Southern. The different region has different uniqueness.')
 
   st.subheader('🌳Tourist number treemap')
   travel_stat_df = read_travel_stat_df()
@@ -442,15 +367,23 @@ On top of the treemap, you can select the tourist group (Total, Thai, Foreigner)
   #select national park
   national_park_df = read_park_df()
   park_detail_dict = read_park_description_json()
-  st.subheader(f'👉🏼 National Parks in {province_option}.')
+  st.subheader(f'👉🏼 Select National Parks in {province_option}.')
   national_park = st.selectbox(f'select national park in {province_option}',
                                 national_park_df[national_park_df['province_en'] == province_option.replace(
                                   ' ', '')]['national_park_en'].to_list())
+
+  st.write('Ranking by number of tourists:')
+  st.write(f'🔸 Total: ', str(int(rank_df[rank_df['id'] == national_park.replace(' National Park', '')].total_rank.values.tolist()[0])))
+  st.write(f'🔸 Thai tourists: ', str(int(rank_df[rank_df['id'] == national_park.replace(' National Park', '')].thai_rank.values.tolist()[0])))
+  st.write(f'🔸 Foreign tourists: ', str(int(rank_df[rank_df['id'] == national_park.replace(' National Park', '')].foreign_rank.values.tolist()[0])))
+
+  view_point_count = str(len(park_detail_dict[national_park]['peak_view_list'].keys()))
+  st.subheader(f'✨ {view_point_count} view points in {national_park}')
   view_point = st.radio(f'choose view point in {national_park}',
                         list(park_detail_dict[national_park]['peak_view_list']),
                         horizontal=False)
 
-  st.write(national_park + ' | ' + view_point)
+  st.subheader(national_park + ' | ' + view_point)
 
   #img part
   national_park_lower = national_park.lower().replace(' ', '_')
