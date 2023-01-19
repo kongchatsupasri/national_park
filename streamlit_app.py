@@ -468,7 +468,7 @@ On top of the treemap, you can select the tourist group (Total, Thai, Foreigner)
                         list(park_detail_dict[national_park]['peak_view_list']),
                         horizontal=False)
 
-  st.markdown(f"<h5 style='text-align: center;'>{national_park + ' | ' + view_point}</h5>", unsafe_allow_html=True)
+  st.write(national_park + ' | ' + view_point)
 
   #img part
   national_park_lower = national_park.lower().replace(' ', '_')
