@@ -172,7 +172,7 @@ st.set_page_config(
 with st.sidebar:
   st.header(':round_pushpin: Dashboard')
   sidebar_radio = st.radio('sidebar_radio',
-                          ['About', 'Thailand Info', 'National Park'],
+                          ['About (Test)', 'Thailand Info', 'National Park'],
                           # index = 0,
                           label_visibility = 'collapsed',
                           key = 'disabled')
@@ -182,7 +182,7 @@ with st.sidebar:
 # %%
 st.header(f'{sidebar_radio}')
 #%%
-if sidebar_radio == 'About':
+if sidebar_radio == 'About (Test)':
   st.write("""Thailand is one of the top  10 countries with the most tourism. 
             The top targeted Thailand provinces of international tourists are Bangkok, 
             Phuket, Surat Thani, and Songkhla. This web app is to help you explore 
