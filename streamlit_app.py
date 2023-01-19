@@ -172,7 +172,7 @@ st.set_page_config(
 with st.sidebar:
   st.header(':round_pushpin: Dashboard')
   sidebar_radio = st.radio('sidebar_radio',
-                          ['About1', 'About2', 'Thailand Info', 'National Park'],
+                          ['About', 'Thailand Info', 'National Park'],
                           # index = 0,
                           label_visibility = 'collapsed',
                           key = 'disabled')
@@ -546,4 +546,17 @@ On top of the treemap, you can select the tourist group (Total, Thai, Foreigner)
     unsafe_allow_html=True,
 )
   st.write(park_detail_dict[national_park]['peak_view_list'][view_point]['description_en'])
+  
+  customized_button = st.markdown("""
+      <style >
+      .stDownloadButton, div.stButton {text-align:center}
+      .stDownloadButton button, div.stButton > button:first-child {
+          line-height: 1.5;
+          display: inline-block;
+          vertical-align: middle;
+          horizontal-align: middle;
+      }
+      
+          }
+      </style>""", unsafe_allow_html=True)
 #%%
