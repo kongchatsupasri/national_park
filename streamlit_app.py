@@ -214,7 +214,7 @@ if sidebar_radio == 'About':
   
   st.image(Image.open(how_to_images_dict['how1']), use_column_width='always')
   st.markdown("<h4 style='text-align: center;'>Thailand Info</h4>", unsafe_allow_html=True)
-  st.write("If you are interested in coming to Thailand have don’t have a targeted destination just yet, you can skim through the interactive chart of popular provinces in Thailand. And you can find some basic info on Thailand's activities here.")
+  st.write("If you are interested in coming to Thailand have don’t have a targeted destination just yet, you can skim through the interactive chart of popular provinces in Thailand.")
   
   st.image(Image.open(how_to_images_dict['how2']), use_column_width='always')
   st.markdown("<h4 style='text-align: center;'>Natonal Parks</h4>", unsafe_allow_html=True)
