@@ -218,7 +218,7 @@ elif sidebar_radio == 'Thailand Info':
               </style>
               """
     st.markdown(hide_table_row_index, unsafe_allow_html=True)
-    st.markdown(df.style.set_properties(color="white", align="center").to_html(table_uuid="table_1"), unsafe_allow_html=True)
+    st.markdown(df.style.set_properties(color="white", align="right").to_html(table_uuid="table_1"), unsafe_allow_html=True)
   st.write('\n')
   st.write('Thailand has six regions; Northern, Northeastern, Central, Eastern, Western, and Southern. The different region has different uniqueness.')
 
