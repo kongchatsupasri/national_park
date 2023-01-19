@@ -67,8 +67,9 @@ def read_park_description_json():
 # st.cache(persist = True)
 def how_to_img():
   d = {'how1': './photo-1585409677983-0f6c41ca9c3b.jpeg',
-      'how2': './p0973lkk.jpeg',
-      'how3': './images.jpeg'}
+      'how2': './
+      'how3': './p0973lkk.jpeg',
+      'how4': './images.jpeg'}
   return d
 #st.cache(persist = True)
 def create_region_dict(df = pd.read_csv('./th_province.csv')):
@@ -182,14 +183,35 @@ with st.sidebar:
 # %%
 st.header(f'{sidebar_radio}')
 #%%
-if sidebar_radio == 'About1':
+if sidebar_radio == 'About':
+  
+  st.write("""Thailand is one of the top  10 countries with the most tourism. 
+            The top targeted Thailand provinces of international tourists are Bangkok, 
+            Phuket, Surat Thani, and Songkhla. This web app is to help you explore 
+            and list out your targeted destinations without scrolling down through tons of text. 😎""")
+  
+
+  st.subheader('🐣 2 sections, 2 more to come')
+#   how_to_images_dict = how_to_img()
+  st.image(Image.open('./tab-01.png'), use_column_width='always')
+  st.markdown("<h4 style='text-align: center;'>Natonal Parks</h4>", unsafe_allow_html=True)
+  st.write('There are 155 national parks in Thailand. The parks’ areas vary from mountains, cliffs, waterfalls, and caves, to beaches. Choose “National Park” on the sidebar to see more.')
+
+  st.image(Image.open('./tab-02.png'), use_column_width='always')
+  st.markdown("<h4 style='text-align: center;'>Temples</h4>", unsafe_allow_html=True)
+  st.write('One of the targeted places for international tourists is temples. There are 43,180 temples in Thailand. The temple section is coming soon. 😬')
+
+  
+  st.image(Image.open('./tab-03.png'), use_column_width='always')
+  st.markdown("<h4 style='text-align: center;'>Food</h4>", unsafe_allow_html=True)
+  st.write('Spicy Papaya Salad, Pad Thai, and Spicy Shrimp Soup are well-known Thai food. There are more. 441 Michelin Stars places in Thailand for you to try. The food section is coming soon. 😬')
+
   st.write("""Thailand is one of the top  10 countries with the most tourism. 
             The top targeted Thailand provinces of international tourists are Bangkok, 
             Phuket, Surat Thani, and Songkhla. This web app is to help you explore 
             and list out your targeted destinations without scrolling down through tons of text. 😎""")
 
-  how_to_images_dict = how_to_img()
-  how_to_pages = ['how1', 'how2', 'how3']
+  
   how_text = {'how1': '''Currently, the app has three sections.  \n
 1. **_About:_** a brief introduction to the app.
 2. **_Thailand Info:_** visualization of the stat from Thailand’s Ministry of Tourism. And brief introductions of the three highlights in Thailand.
@@ -270,30 +292,8 @@ you can skim through the interactive chart of popular provinces in Thailand. And
           }
       </style>""", unsafe_allow_html=True)
 
-#%%
-elif sidebar_radio == 'About2':
   
-  st.write("""Thailand is one of the top  10 countries with the most tourism. 
-            The top targeted Thailand provinces of international tourists are Bangkok, 
-            Phuket, Surat Thani, and Songkhla. This web app is to help you explore 
-            and list out your targeted destinations without scrolling down through tons of text. 😎""")
   
-
-  how_to_images_dict = how_to_img()
-  st.image(Image.open('./tab-01.png'), use_column_width='always')
-  st.markdown("<h4 style='text-align: center;'>Natonal Parks</h4>", unsafe_allow_html=True)
-  st.write('There are 155 national parks in Thailand. The parks’ areas vary from mountains, cliffs, waterfalls, and caves, to beaches. Choose “National Park” on the sidebar to see more.')
-
-
-  st.image(Image.open('./tab-02.png'), use_column_width='always')
-  st.markdown("<h4 style='text-align: center;'>Temples</h4>", unsafe_allow_html=True)
-  st.write('One of the targeted places for international tourists is temples. There are 43,180 temples in Thailand. The temple section is coming soon. 😬')
-
-  
-  st.image(Image.open('./tab-03.png'), use_column_width='always')
-  st.markdown("<h4 style='text-align: center;'>Food</h4>", unsafe_allow_html=True)
-  st.write('Spicy Papaya Salad, Pad Thai, and Spicy Shrimp Soup are well-known Thai food. There are more. 441 Michelin Stars places in Thailand for you to try. The food section is coming soon. 😬')
-
 #%%
 elif sidebar_radio == 'Thailand Info':
   st.write('Thailand has five regions; Northern, Northeastern, Central, Eastern, Western, and Southern. The different region has different uniqueness.')
@@ -342,30 +342,7 @@ elif sidebar_radio == 'Thailand Info':
 3. The third-tier boxes are the number of tourists in each province in each region.
 
 On top of the treemap, you can select the tourist group (Total, Thai, Foreigner) to see the group’s popular targeted provinces.
-''') #chart description
-
-  # st.subheader('🤟 Three sections')
-  # short_intro1, short_intro2, short_intro3 = st.columns(3)
-  
-  # how_to_images_dict = how_to_img()
-  # with short_intro1:
-  #     st.image(Image.open('./tab-01.png'), use_column_width='always')
-  #     st.markdown("<h4 style='text-align: center;'>Natonal Parks</h4>", unsafe_allow_html=True)
-  #     st.write('There are 155 national parks in Thailand. The parks’ areas vary from mountains, cliffs, waterfalls, and caves, to beaches. Choose “National Park” on the sidebar to see more.')
-
-  # with short_intro2:
-  #     st.image(Image.open('./tab-02.png'), use_column_width='always')
-  #     st.markdown("<h4 style='text-align: center;'>Temples</h4>", unsafe_allow_html=True)
-  #     st.write('One of the targeted places for international tourists is temples. There are 43,180 temples in Thailand. The temple section is coming soon. 😬')
-
-  # with short_intro3:
-  #     st.image(Image.open('./tab-03.png'), use_column_width='always')
-  #     st.markdown("<h4 style='text-align: center;'>Food</h4>", unsafe_allow_html=True)
-  #     st.write('Spicy Papaya Salad, Pad Thai, and Spicy Shrimp Soup are well-known Thai food. There are more. 441 Michelin Stars places in Thailand for you to try. The food section is coming soon. 😬')
-
-
-
-
+''')
 
 
 
