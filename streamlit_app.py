@@ -66,7 +66,7 @@ def read_park_description_json():
 
 # st.cache(persist = True)
 def how_to_img():
-  d = {'how1': './photo-1585409677983-0f6c41ca9c3b.jpeg',
+  d = {'how1': './tab-01.png',
       'how2': './tab-01.png',
       'how3': './tab-02.png',
       'how4': './tab-03.png'}
