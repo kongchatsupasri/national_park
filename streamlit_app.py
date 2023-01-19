@@ -209,16 +209,16 @@ elif sidebar_radio == 'Thailand Info':
   df = pd.DataFrame({'region': ['Northern', 'Northeastern', 'Central', 'Western', 'Eastern', 'Southern'],
                         'highlight': ['mountains, humble culture', 'uniqueness of food style', 'temples', 'beach (gulf of Thailand)', 'islands, forests, waterfall', 'beach (Andaman sea)']})
 
-  table_col1, table_col2, table_col3 = st.columns([1, 2, 1])
-  with table_col2:
-    hide_table_row_index = """
-              <style>
-              thead tr th:first-child {display:none}
-              tbody th {display:none}
-              </style>
-              """
-    st.markdown(hide_table_row_index, unsafe_allow_html=True)
-    st.markdown(df.style.set_properties(color="white", align="right").to_html(table_uuid="table_1"), unsafe_allow_html=True)
+#   table_col1, table_col2, table_col3 = st.columns([1, 2, 1])
+#   with table_col2:
+  hide_table_row_index = """
+            <style>
+            thead tr th:first-child {display:none}
+            tbody th {display:none}
+            </style>
+            """
+  st.markdown(hide_table_row_index, unsafe_allow_html=True)
+  st.markdown(df.style.set_properties(color="white", align="right").to_html(table_uuid="table_1"), unsafe_allow_html=True)
   st.write('\n')
   st.write('Thailand has six regions; Northern, Northeastern, Central, Eastern, Western, and Southern. The different region has different uniqueness.')
 
