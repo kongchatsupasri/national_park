@@ -181,41 +181,22 @@ if sidebar_radio == 'About':
             Phuket, Surat Thani, and Songkhla. This web app is to help you explore 
             and list out your targeted destinations without scrolling down through tons of text. 😎""")
   
-  how_text = {'how1': '''Currently, the app has three sections.  \n
-  1. **_About:_** a brief introduction to the app.
-  2. **_Thailand Info:_** visualization of the stat from Thailand’s Ministry of Tourism. And brief introductions of the three highlights in Thailand.
-  3. **_National Park:_** If you like nature (beaches, islands, mountains, caves, waterfalls), this is your section. It has information on all 153 national parks in Thailand. 
-  Thai **_Food_** and **_Temples_** are also highlights of Thai tourism. These two sections are coming soon 😀.
-  ''',
-                'how2': '''If you are interested in coming to Thailand have don’t have a targeted destination just yet, 
-  you can skim through the interactive chart of popular provinces in Thailand. And you can find some basic info on Thailand's activities here.
-  ''',
-                'how3': '''Find out about every Thailand National Parks in this section if you love nature. The flow is top-down.
-  1. You will see the map of all of the national parks in Thailand. 
-  2. Region’s popularity will be shown in the treemap.
-  3. After selecting the region, the tourist number of each province in the selected region will be shown.
-  4. Select the province.
-  5. That app will show the location and national parks in the province you have selected.
-  6. Select the National Park.
-  7. Hover through the selected national park viewpoints to see the pictures and descriptions. 
-  '''}
-  
   st.subheader('✌🏼 2 sections, 2 more to come')
   how_to_images_dict = how_to_img()
   
-  st.markdown("<h4 style='text-align: center;'>📊 Thailand Info</h4>", unsafe_allow_html=True)
+#   st.markdown("<h4 style='text-align: center;'>📊 Thailand Info</h4>", unsafe_allow_html=True)
   st.image(Image.open(how_to_images_dict['how1']), use_column_width='always')
   st.write("If you are interested in coming to Thailand have don’t have a targeted destination just yet, you can skim through the interactive chart of popular provinces in Thailand.")
   
-  st.markdown("<h4 style='text-align: center;'>🌲 Natonal Parks</h4>", unsafe_allow_html=True)
+#   st.markdown("<h4 style='text-align: center;'>🌲 Natonal Parks</h4>", unsafe_allow_html=True)
   st.image(Image.open(how_to_images_dict['how2']), use_column_width='always')
   st.write('There are 155 national parks in Thailand. The parks’ areas vary from mountains, cliffs, waterfalls, and caves, to beaches. Choose “National Park” on the sidebar to see more.')
 
-  st.markdown("<h4 style='text-align: center;'>🛕 Temples (coming soon)</h4>", unsafe_allow_html=True)
+#   st.markdown("<h4 style='text-align: center;'>🛕 Temples (coming soon)</h4>", unsafe_allow_html=True)
   st.image(Image.open(how_to_images_dict['how3']), use_column_width='always')
   st.write('One of the targeted places for international tourists is temples. There are 43,180 temples in Thailand. The temple section is coming soon. 😬')
 
-  st.markdown("<h4 style='text-align: center;'>🍲 Food (coming soon)</h4>", unsafe_allow_html=True)
+#   st.markdown("<h4 style='text-align: center;'>🍲 Food (coming soon)</h4>", unsafe_allow_html=True)
   st.image(Image.open(how_to_images_dict['how4']), use_column_width='always')
   st.write('Spicy Papaya Salad, Pad Thai, and Spicy Shrimp Soup are well-known Thai food. There are more. 441 Michelin Stars places in Thailand for you to try. The food section is coming soon. 😬')
 
