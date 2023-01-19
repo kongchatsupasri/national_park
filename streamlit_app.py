@@ -212,9 +212,9 @@ if sidebar_radio == 'About':
   st.subheader('🐣 2 sections, 2 more to come')
   how_to_images_dict = how_to_img()
   
-  st.image(Image.open(how_to_images_dict['how2']), use_column_width='always')
-  st.markdown("<h4 style='text-align: center;'>Natonal Parks</h4>", unsafe_allow_html=True)
-  st.write('If you are interested in coming to Thailand have don’t have a targeted destination just yet, you can skim through the interactive chart of popular provinces in Thailand. And you can find some basic info on Thailand's activities here.')
+  st.image(Image.open(how_to_images_dict['how1']), use_column_width='always')
+  st.markdown("<h4 style='text-align: center;'>Thailand Info</h4>", unsafe_allow_html=True)
+  st.write("If you are interested in coming to Thailand have don’t have a targeted destination just yet, you can skim through the interactive chart of popular provinces in Thailand. And you can find some basic info on Thailand's activities here.")
   
   st.image(Image.open(how_to_images_dict['how2']), use_column_width='always')
   st.markdown("<h4 style='text-align: center;'>Natonal Parks</h4>", unsafe_allow_html=True)
@@ -224,7 +224,6 @@ if sidebar_radio == 'About':
   st.markdown("<h4 style='text-align: center;'>Temples</h4>", unsafe_allow_html=True)
   st.write('One of the targeted places for international tourists is temples. There are 43,180 temples in Thailand. The temple section is coming soon. 😬')
 
-  
   st.image(Image.open(how_to_images_dict['how4']), use_column_width='always')
   st.markdown("<h4 style='text-align: center;'>Food</h4>", unsafe_allow_html=True)
   st.write('Spicy Papaya Salad, Pad Thai, and Spicy Shrimp Soup are well-known Thai food. There are more. 441 Michelin Stars places in Thailand for you to try. The food section is coming soon. 😬')
