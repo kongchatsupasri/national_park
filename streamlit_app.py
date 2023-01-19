@@ -66,9 +66,9 @@ def read_park_description_json():
 
 # st.cache(persist = True)
 def how_to_img():
-  d = {'how1': './tab-01.png',
-      'how2': './tab-02.png',
-      'how3': './tab-03.png'}
+  d = {'how1': './photo-1585409677983-0f6c41ca9c3b.jpeg',
+      'how2': './p0973lkk.jpeg',
+      'how3': './images.jpeg'}
   return d
 #st.cache(persist = True)
 def create_region_dict(df = pd.read_csv('./th_province.csv')):
@@ -172,7 +172,7 @@ st.set_page_config(
 with st.sidebar:
   st.header(':round_pushpin: Dashboard')
   sidebar_radio = st.radio('sidebar_radio',
-                          ['About (Test)', 'Thailand Info', 'National Park'],
+                          ['About1', 'About2', 'Thailand Info', 'National Park'],
                           # index = 0,
                           label_visibility = 'collapsed',
                           key = 'disabled')
@@ -182,7 +182,7 @@ with st.sidebar:
 # %%
 st.header(f'{sidebar_radio}')
 #%%
-if sidebar_radio == 'About (Test)':
+if sidebar_radio == 'About1':
   st.write("""Thailand is one of the top  10 countries with the most tourism. 
             The top targeted Thailand provinces of international tourists are Bangkok, 
             Phuket, Surat Thani, and Songkhla. This web app is to help you explore 
@@ -270,7 +270,29 @@ you can skim through the interactive chart of popular provinces in Thailand. And
           }
       </style>""", unsafe_allow_html=True)
 
+#%%
+elif sidebar_radio == 'About2':
+  
+  st.write("""Thailand is one of the top  10 countries with the most tourism. 
+            The top targeted Thailand provinces of international tourists are Bangkok, 
+            Phuket, Surat Thani, and Songkhla. This web app is to help you explore 
+            and list out your targeted destinations without scrolling down through tons of text. 😎""")
+  
 
+  how_to_images_dict = how_to_img()
+  st.image(Image.open('./tab-01.png'), use_column_width='always')
+  st.markdown("<h4 style='text-align: center;'>Natonal Parks</h4>", unsafe_allow_html=True)
+  st.write('There are 155 national parks in Thailand. The parks’ areas vary from mountains, cliffs, waterfalls, and caves, to beaches. Choose “National Park” on the sidebar to see more.')
+
+
+  st.image(Image.open('./tab-02.png'), use_column_width='always')
+  st.markdown("<h4 style='text-align: center;'>Temples</h4>", unsafe_allow_html=True)
+  st.write('One of the targeted places for international tourists is temples. There are 43,180 temples in Thailand. The temple section is coming soon. 😬')
+
+  
+  st.image(Image.open('./tab-03.png'), use_column_width='always')
+  st.markdown("<h4 style='text-align: center;'>Food</h4>", unsafe_allow_html=True)
+  st.write('Spicy Papaya Salad, Pad Thai, and Spicy Shrimp Soup are well-known Thai food. There are more. 441 Michelin Stars places in Thailand for you to try. The food section is coming soon. 😬')
 
 #%%
 elif sidebar_radio == 'Thailand Info':
@@ -322,24 +344,24 @@ elif sidebar_radio == 'Thailand Info':
 On top of the treemap, you can select the tourist group (Total, Thai, Foreigner) to see the group’s popular targeted provinces.
 ''') #chart description
 
-  st.subheader('🤟 Three sections')
-  short_intro1, short_intro2, short_intro3 = st.columns(3)
+  # st.subheader('🤟 Three sections')
+  # short_intro1, short_intro2, short_intro3 = st.columns(3)
   
-  how_to_images_dict = how_to_img()
-  with short_intro1:
-      st.image(Image.open('./tab-01.png'), use_column_width='always')
-      st.markdown("<h4 style='text-align: center;'>Natonal Parks</h4>", unsafe_allow_html=True)
-      st.write('There are 155 national parks in Thailand. The parks’ areas vary from mountains, cliffs, waterfalls, and caves, to beaches. Choose “National Park” on the sidebar to see more.')
+  # how_to_images_dict = how_to_img()
+  # with short_intro1:
+  #     st.image(Image.open('./tab-01.png'), use_column_width='always')
+  #     st.markdown("<h4 style='text-align: center;'>Natonal Parks</h4>", unsafe_allow_html=True)
+  #     st.write('There are 155 national parks in Thailand. The parks’ areas vary from mountains, cliffs, waterfalls, and caves, to beaches. Choose “National Park” on the sidebar to see more.')
 
-  with short_intro2:
-      st.image(Image.open('./tab-02.png'), use_column_width='always')
-      st.markdown("<h4 style='text-align: center;'>Temples</h4>", unsafe_allow_html=True)
-      st.write('One of the targeted places for international tourists is temples. There are 43,180 temples in Thailand. The temple section is coming soon. 😬')
+  # with short_intro2:
+  #     st.image(Image.open('./tab-02.png'), use_column_width='always')
+  #     st.markdown("<h4 style='text-align: center;'>Temples</h4>", unsafe_allow_html=True)
+  #     st.write('One of the targeted places for international tourists is temples. There are 43,180 temples in Thailand. The temple section is coming soon. 😬')
 
-  with short_intro3:
-      st.image(Image.open('./tab-03.png'), use_column_width='always')
-      st.markdown("<h4 style='text-align: center;'>Food</h4>", unsafe_allow_html=True)
-      st.write('Spicy Papaya Salad, Pad Thai, and Spicy Shrimp Soup are well-known Thai food. There are more. 441 Michelin Stars places in Thailand for you to try. The food section is coming soon. 😬')
+  # with short_intro3:
+  #     st.image(Image.open('./tab-03.png'), use_column_width='always')
+  #     st.markdown("<h4 style='text-align: center;'>Food</h4>", unsafe_allow_html=True)
+  #     st.write('Spicy Papaya Salad, Pad Thai, and Spicy Shrimp Soup are well-known Thai food. There are more. 441 Michelin Stars places in Thailand for you to try. The food section is coming soon. 😬')
 
 
 
@@ -387,7 +409,7 @@ elif sidebar_radio == 'National Park':
       """,
       unsafe_allow_html=True,
   )
-  st.write('''This treemap shows the number of tourists to national parks in each region. The bigger size of the box means a larger amount of tourists. The regions with the most tourists to their National Parks are Southern, Northern, and Northeaster. Note that number of parks in the region affects the size. The central area’s size is the smallest one because there are only 3 national parks in this region.
+  st.write('''This treemap shows the number of tourists to national parks in each region. The bigger size of the box means a larger amount of tourists. The regions with the most tourists to their National Parks are Southern, Northern, and Northeaster. Note that number of parks in the region affects the size. The central area’s size is the smallest one because there are only xxx national parks in this region.
   
   Select the tourist group (Total, Thai, Foreigner) to see their popular targeted region with national parks.
 ''')
