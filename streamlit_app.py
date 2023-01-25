@@ -133,7 +133,7 @@ def country_treemap(df = read_park_treemap(), region_dict = create_region_dict()
 #%%##########################################################
 st.set_page_config(
   page_title="Thailand National Park",
-  page_icon=Image.open('/home/cpu1700/Desktop/stockfun/streamlit_app1111/thailand_national_park/layout-fluid.png'),
+  page_icon=Image.open('./image.png'),
   layout="centered", #centered, wide
   initial_sidebar_state="expanded",
   menu_items={'Get Help': 'https://www.extremelycoolapp.com/help',
