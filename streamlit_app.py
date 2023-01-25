@@ -13,75 +13,57 @@ import pickle as pkle
 import numpy as np
 import os
 #%% functions for cache
-# st.cache(persist = True)
+st.cache(persist = True)
 def read_province_df():
-  #note: all provinces
-  #data includes; province getmetry, province, name, region_en, lat, lon, plane, bus, train, driving
+  #thailand's all provinces; province getmetry, province, name, region_en, lat, lon, plane, bus, train, driving
   df = pd.read_csv('./th_province.csv')
   df['geometry'] = df['geometry'].apply(wkt.loads)
   df = gpd.GeoDataFrame(df, geometry = 'geometry')
   return df
 
-# st.cache(persist = True)
+st.cache(persist = True)
 def read_park_df():
-  #
-  #data: data includes; national park name (th, en), star, review, img_url, google_map_url, geometry, region_en, province_en
+  #all national parks; national park name (th, en), star, review, img_url, google_map_url, geometry, region_en, province_en
   df = pd.read_csv('./th_national_park.csv')
   df['geometry'] = df['geometry'].apply(wkt.loads)
   df = gpd.GeoDataFrame(df, geometry = 'geometry')
   return df
 
-# st.cache(persist = True)
-def read_region_df():
-  #note: all region in Thailand for region selection and plotly
-  df = pd.read_csv('./th_region.csv')
-  df['geometry'] = df['geometry'].apply(wkt.loads)
-  df = gpd.GeoDataFrame(df, geometry = 'geometry')
-  return df
-
-# st.cache(persist = True)
+st.cache(persist = True)
 def read_park_treemap():
   df = pd.read_csv('./th_national_park_treemap.csv')
   return df
 
-#st.cache(persist = True)
+st.cache(persist = True)
 def read_rank_df():
   df = pd.read_csv('./national_park_ranking.csv')
   return df
 
-# st.cache(persist = True)
+st.cache(persist = True)
 def read_travel_stat_df():
   df = pd.read_csv('./travel_stat.csv')
   return df
 
-# st.cache(persist = True)
+st.cache(persist = True)
 def read_coordinate_json():
   coordinate_json = json.load(open('./th_coordinates.json'))
   return coordinate_json
 
-# st.cache(persist = True)
+st.cache(persist = True)
 def read_park_description_json():
   park_detail_dict = json.load(open('./national_park_description.json'))
   return park_detail_dict
 
-# st.cache(persist = True)
-def how_to_img():
-  d = {'how1': './tab-04.png',
-      'how2': './tab-01.png',
-      'how3': './tab-02.png',
-      'how4': './tab-03.png'}
-  return d
-#st.cache(persist = True)
+st.cache(persist = True)
 def create_region_dict(df = pd.read_csv('./th_province.csv')):
   region_dict = {region: df[df['region_en'] == region].name.to_list() for region in df.region_en.unique()}
   return region_dict
 
-#st.cache(persist = True)
+st.cache(persist = True)
 def create_park_region_dict():
   df = read_park_df()
   park_region_dict = {region: list(df[df['region_en'] == region].province_en.unique()) for region in df.region_en.unique()}
   return park_region_dict
-
 
 st.cache(persist = True)
 def plot_scattermapbox(coordinate_dict = read_coordinate_json(), province_df = read_province_df(), park_df = read_province_df(), area = 'Thailand'):
@@ -123,7 +105,7 @@ def plot_scattermapbox(coordinate_dict = read_coordinate_json(), province_df = r
   fig.update_traces(hovertemplate='<b>%{text}</b>')
   return fig
 
-
+st.cache(persist = True)
 def country_treemap(df = read_park_treemap(), region_dict = create_region_dict(), region = 'Thailand', traveler_group_radio = 'Total'):
   if region == 'Thailand':
     df = df[(national_park_treemap_df['parent'] == 'Thailand') | (national_park_treemap_df['parent'].isnull())]
@@ -148,18 +130,17 @@ def country_treemap(df = read_park_treemap(), region_dict = create_region_dict()
                                       ))
   fig.update_layout(margin = dict(t=0, l=0, r=0, b=0))
   return fig
-# %%
+#%%##########################################################
 st.set_page_config(
   page_title="Thailand National Park",
-  page_icon="✌️",
+  page_icon=Image.open('/home/cpu1700/Desktop/stockfun/streamlit_app1111/thailand_national_park/layout-fluid.png'),
   layout="centered", #centered, wide
   initial_sidebar_state="expanded",
-  menu_items={
-              'Get Help': 'https://www.extremelycoolapp.com/help',
+  menu_items={'Get Help': 'https://www.extremelycoolapp.com/help',
               'Report a bug': "https://www.extremelycoolapp.com/bug",
               'About': """This web app started from my wondering about the popular traveling locations in Thailand. I could only find "Top 20 places to go in Thailand" with tons of text. And that's about it. I created this app (thanks to Streamlit) and hope it will help you find your targeted destination in Thailand."""
-  }
-)
+              }
+              )
 
 with st.sidebar:
   st.header(':round_pushpin: Dashboard')
@@ -173,7 +154,7 @@ with st.sidebar:
     st.write('Food and Temples are coming soon. :grinning:')
 # %%
 st.header(f'{sidebar_radio}')
-#%%
+#%%##########################################################
 if sidebar_radio == 'About':
   
   st.write("""Thailand is one of the top  10 countries with the most tourism. 
@@ -181,39 +162,34 @@ if sidebar_radio == 'About':
             Phuket, Surat Thani, and Songkhla. This web app is to help you explore 
             and list out your targeted destinations without scrolling down through tons of text.""")
   
-  how_to_images_dict = how_to_img()
   st.markdown("<h2 style='text-align: center;'>✌🏼 sections</h2>", unsafe_allow_html=True)
   
   img_section11, img_section12 = st.columns(2)
   with img_section11:
-    st.image(Image.open(how_to_images_dict['how1']), use_column_width='always')
+    st.image(Image.open('./tab-01.png'), use_column_width='always')
     st.write("If you are interested in coming to Thailand have don’t have a targeted destination just yet, you can skim through the interactive chart of popular provinces in Thailand.")
   
   with img_section12:
-    st.image(Image.open(how_to_images_dict['how2']), use_column_width='always')
+    st.image(Image.open('./tab-02.png'), use_column_width='always')
     st.write('There are 155 national parks in Thailand. The parks’ areas vary from mountains, cliffs, waterfalls, and caves, to beaches. Choose “National Park” on the sidebar to see more.')
 
   st.markdown("<h2 style='text-align: center;'>✌🏼 more to come</h2>", unsafe_allow_html=True)
   img_section21, img_section22 = st.columns(2)
   with img_section21:
-    st.image(Image.open(how_to_images_dict['how3']), use_column_width='always')
+    st.image(Image.open('./tab-03.png'), use_column_width='always')
     st.write('One of the targeted places for international tourists is temples. There are 43,180 temples in Thailand. The temple section is coming soon. 😬')
 
   with img_section22:
-    st.image(Image.open(how_to_images_dict['how4']), use_column_width='always')
+    st.image(Image.open('./tab-04.png'), use_column_width='always')
     st.write('Spicy Papaya Salad, Pad Thai, and Spicy Shrimp Soup are well-known Thai food. There are more. 441 Michelin Stars places in Thailand for you to try. The food section is coming soon. 😬')
 
 
-  
-  
-#%%
+#%%##########################################################
 elif sidebar_radio == 'Thailand Info':
   st.subheader("Region's Highlight")
   df = pd.DataFrame({'region': ['Northern', 'Northeastern', 'Central', 'Western', 'Eastern', 'Southern'],
                         'highlight': ['mountains, humble culture', 'uniqueness of food style', 'temples', 'beach (gulf of Thailand)', 'islands, forests, waterfall', 'beach (Andaman sea)']})
 
-#   table_col1, table_col2, table_col3 = st.columns([1, 2, 1])
-#   with table_col2:
   hide_table_row_index = """
             <style>
             thead tr th:first-child {display:none}
@@ -221,7 +197,9 @@ elif sidebar_radio == 'Thailand Info':
             </style>
             """
   st.markdown(hide_table_row_index, unsafe_allow_html=True)
-  st.markdown(df.style.set_properties(color="white", align="right").to_html(table_uuid="table_1"), unsafe_allow_html=True)
+  st.markdown(f'''<div align="center">
+                    {df.style.set_properties(color="white", align="right").to_html(table_uuid="table_1")}''', 
+                unsafe_allow_html=True)
   st.write('\n')
   st.write('Thailand has six regions; Northern, Northeastern, Central, Eastern, Western, and Southern. The different region has different uniqueness.')
 
@@ -259,7 +237,7 @@ On top of the treemap, you can select the tourist group (Total, Thai, Foreigner)
 ''')
 
 
-
+#%% ########################################################
 elif sidebar_radio == 'National Park':
   
   coordinate_dict = read_coordinate_json()
@@ -455,7 +433,6 @@ On top of the treemap, you can select the tourist group (Total, Thai, Foreigner)
           vertical-align: middle;
           horizontal-align: middle;
       }
-      
           }
       </style>""", unsafe_allow_html=True)
 #%%
