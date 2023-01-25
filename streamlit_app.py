@@ -166,21 +166,21 @@ if sidebar_radio == 'About':
   
   img_section11, img_section12 = st.columns(2)
   with img_section11:
-    st.image(Image.open('./tab-01.png'), use_column_width='always')
+    st.image(Image.open('./tab-04.png'), use_column_width='always')
     st.write("If you are interested in coming to Thailand have don’t have a targeted destination just yet, you can skim through the interactive chart of popular provinces in Thailand.")
   
   with img_section12:
-    st.image(Image.open('./tab-02.png'), use_column_width='always')
+    st.image(Image.open('./tab-01.png'), use_column_width='always')
     st.write('There are 155 national parks in Thailand. The parks’ areas vary from mountains, cliffs, waterfalls, and caves, to beaches. Choose “National Park” on the sidebar to see more.')
 
   st.markdown("<h2 style='text-align: center;'>✌🏼 more to come</h2>", unsafe_allow_html=True)
   img_section21, img_section22 = st.columns(2)
   with img_section21:
-    st.image(Image.open('./tab-03.png'), use_column_width='always')
+    st.image(Image.open('./tab-02.png'), use_column_width='always')
     st.write('One of the targeted places for international tourists is temples. There are 43,180 temples in Thailand. The temple section is coming soon. 😬')
 
   with img_section22:
-    st.image(Image.open('./tab-04.png'), use_column_width='always')
+    st.image(Image.open('./tab-03.png'), use_column_width='always')
     st.write('Spicy Papaya Salad, Pad Thai, and Spicy Shrimp Soup are well-known Thai food. There are more. 441 Michelin Stars places in Thailand for you to try. The food section is coming soon. 😬')
 
 
