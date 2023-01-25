@@ -179,26 +179,29 @@ if sidebar_radio == 'About':
   st.write("""Thailand is one of the top  10 countries with the most tourism. 
             The top targeted Thailand provinces of international tourists are Bangkok, 
             Phuket, Surat Thani, and Songkhla. This web app is to help you explore 
-            and list out your targeted destinations without scrolling down through tons of text. 😎""")
+            and list out your targeted destinations without scrolling down through tons of text.""")
   
-  st.subheader('✌🏼 2 sections, 2 more to come')
   how_to_images_dict = how_to_img()
+  st.markdown("<h2 style='text-align: center;'>✌🏼 sections</h2>", unsafe_allow_html=True)
   
-#   st.markdown("<h4 style='text-align: center;'>📊 Thailand Info</h4>", unsafe_allow_html=True)
-  st.image(Image.open(how_to_images_dict['how1']), use_column_width='always')
-  st.write("If you are interested in coming to Thailand have don’t have a targeted destination just yet, you can skim through the interactive chart of popular provinces in Thailand.")
+  img_section11, img_section12 = st.columns(2)
+  with img_section11:
+    st.image(Image.open(how_to_images_dict['how1']), use_column_width='always')
+    st.write("If you are interested in coming to Thailand have don’t have a targeted destination just yet, you can skim through the interactive chart of popular provinces in Thailand.")
   
-#   st.markdown("<h4 style='text-align: center;'>🌲 Natonal Parks</h4>", unsafe_allow_html=True)
-  st.image(Image.open(how_to_images_dict['how2']), use_column_width='always')
-  st.write('There are 155 national parks in Thailand. The parks’ areas vary from mountains, cliffs, waterfalls, and caves, to beaches. Choose “National Park” on the sidebar to see more.')
+  with img_section12:
+    st.image(Image.open(how_to_images_dict['how2']), use_column_width='always')
+    st.write('There are 155 national parks in Thailand. The parks’ areas vary from mountains, cliffs, waterfalls, and caves, to beaches. Choose “National Park” on the sidebar to see more.')
 
-#   st.markdown("<h4 style='text-align: center;'>🛕 Temples (coming soon)</h4>", unsafe_allow_html=True)
-  st.image(Image.open(how_to_images_dict['how3']), use_column_width='always')
-  st.write('One of the targeted places for international tourists is temples. There are 43,180 temples in Thailand. The temple section is coming soon. 😬')
+  st.markdown("<h2 style='text-align: center;'>✌🏼 more to come</h2>", unsafe_allow_html=True)
+  img_section21, img_section22 = st.columns(2)
+  with img_section21:
+    st.image(Image.open(how_to_images_dict['how3']), use_column_width='always')
+    st.write('One of the targeted places for international tourists is temples. There are 43,180 temples in Thailand. The temple section is coming soon. 😬')
 
-#   st.markdown("<h4 style='text-align: center;'>🍲 Food (coming soon)</h4>", unsafe_allow_html=True)
-  st.image(Image.open(how_to_images_dict['how4']), use_column_width='always')
-  st.write('Spicy Papaya Salad, Pad Thai, and Spicy Shrimp Soup are well-known Thai food. There are more. 441 Michelin Stars places in Thailand for you to try. The food section is coming soon. 😬')
+  with img_section22:
+    st.image(Image.open(how_to_images_dict['how4']), use_column_width='always')
+    st.write('Spicy Papaya Salad, Pad Thai, and Spicy Shrimp Soup are well-known Thai food. There are more. 441 Michelin Stars places in Thailand for you to try. The food section is coming soon. 😬')
 
 
   
